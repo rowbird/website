@@ -56,17 +56,20 @@ const trust = [
           email, or CSV, Excel and PDF files in Slack, Telegram, Discord, a webhook or a bucket. Add a condition and the same
           report becomes an alert.
         </p>
-        <div class="mt-8 flex flex-col gap-3">
-          <CopyCommand command={run} />
+      </div>
+      <div class="mt-12 sm:mt-16">
+        <VideoPlate />
+      </div>
+      <div class="mt-10 border-t border-rule pt-8">
+        <div class="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
+          <p class="display text-3xl text-bark">Try it in one minute.</p>
           <p class="flex flex-wrap gap-x-5 gap-y-1 text-sm text-mute">
             <a class="underline decoration-rule underline-offset-4 transition hover:text-breast-ink hover:decoration-breast-ink" href="https://docs.rowbird.dev/guide/quick-start">Quick start</a>
             <a class="underline decoration-rule underline-offset-4 transition hover:text-breast-ink hover:decoration-breast-ink" href="https://docs.rowbird.dev/guide/demo">Try the demo</a>
             <a class="underline decoration-rule underline-offset-4 transition hover:text-breast-ink hover:decoration-breast-ink" href="https://github.com/rowbird/rowbird">Star on GitHub</a>
           </p>
         </div>
-      </div>
-      <div class="mt-14 sm:mt-20">
-        <VideoPlate />
+        <div class="mt-5"><CopyCommand command={run} /></div>
       </div>
     </section>
 
