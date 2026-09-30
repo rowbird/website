@@ -47,24 +47,21 @@ const trust = [
   <main id="main">
     <!-- Hero -->
     <section class="relative mx-auto max-w-6xl px-5 pt-16 sm:px-8 sm:pt-24">
-      <p class="label flex flex-wrap items-center gap-x-3 gap-y-1">
-        <span>Open source</span><span aria-hidden="true">/</span><span>Self-hosted</span><span aria-hidden="true">/</span><span>Apache 2.0</span>
-      </p>
-      <h1 class="display mt-6 text-[clamp(3.4rem,10.5vw,8.6rem)] font-medium text-bark">
+      <h1 class="display text-[clamp(3.4rem,10.5vw,8.6rem)] font-medium text-bark">
         Your SQL results, <em>delivered.</em>
       </h1>
-      <div class="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-end lg:gap-14">
-        <p class="max-w-xl text-lg leading-relaxed text-bark/85 sm:text-xl">
+      <div class="mt-10 max-w-3xl">
+        <p class="text-lg leading-relaxed text-bark/85 sm:text-xl">
           Rowbird runs your queries on a schedule and delivers the results where your team already reads: a table in the
           email, or CSV, Excel and PDF files in Slack, Telegram, Discord, a webhook or a bucket. Add a condition and the same
           report becomes an alert.
         </p>
-        <div class="flex min-w-0 flex-col gap-3">
-          <CopyCommand command={run} wrap />
+        <div class="mt-8 flex flex-col gap-3">
+          <CopyCommand command={run} />
           <p class="flex flex-wrap gap-x-5 gap-y-1 text-sm text-mute">
-            <a class="underline decoration-rule underline-offset-4 transition hover:text-breast hover:decoration-breast" href="https://docs.rowbird.dev/guide/quick-start">Quick start</a>
-            <a class="underline decoration-rule underline-offset-4 transition hover:text-breast hover:decoration-breast" href="https://docs.rowbird.dev/guide/demo">Try the demo</a>
-            <a class="underline decoration-rule underline-offset-4 transition hover:text-breast hover:decoration-breast" href="https://github.com/rowbird/rowbird">Star on GitHub</a>
+            <a class="underline decoration-rule underline-offset-4 transition hover:text-breast-ink hover:decoration-breast-ink" href="https://docs.rowbird.dev/guide/quick-start">Quick start</a>
+            <a class="underline decoration-rule underline-offset-4 transition hover:text-breast-ink hover:decoration-breast-ink" href="https://docs.rowbird.dev/guide/demo">Try the demo</a>
+            <a class="underline decoration-rule underline-offset-4 transition hover:text-breast-ink hover:decoration-breast-ink" href="https://github.com/rowbird/rowbird">Star on GitHub</a>
           </p>
         </div>
       </div>
@@ -103,7 +100,7 @@ const trust = [
       <div class="mt-20 space-y-28">
         <article class="grid gap-10 [&>*]:min-w-0 md:grid-cols-[1fr_1.35fr] md:items-center">
           <div>
-            <p class="display text-6xl text-breast">01</p>
+            <p class="display text-6xl text-breast-2">01</p>
             <h3 class="display mt-3 text-4xl text-bark">Write it, or ask for it.</h3>
             <p class="mt-4 text-lg leading-relaxed text-bark/80">
               Write SQL with schema autocomplete and a live preview. Or describe what you need, and the optional assistant
@@ -111,7 +108,7 @@ const trust = [
               before you apply it.
             </p>
             <p class="mt-5 font-mono text-sm text-mute">
-              <span class="text-breast">Supports</span> {databases.join(' · ')}, with TLS and SSH tunnels.
+              <span class="text-breast-ink">Supports</span> {databases.join(' · ')}, with TLS and SSH tunnels.
             </p>
           </div>
           <figure class="relative">
@@ -130,7 +127,7 @@ const trust = [
             <figcaption class="label mt-4">Fig. 3 · Weekdays at 07:00, with the next five runs</figcaption>
           </figure>
           <div class="order-1 md:order-2">
-            <p class="display text-6xl text-breast">02</p>
+            <p class="display text-6xl text-breast-2">02</p>
             <h3 class="display mt-3 text-4xl text-bark">Put it on a schedule.</h3>
             <p class="mt-4 text-lg leading-relaxed text-bark/80">
               Cron with a time zone, a visual builder, and the next runs spelled out before you save. 07:00 stays 07:00
@@ -143,7 +140,7 @@ const trust = [
 
         <article class="grid gap-10 [&>*]:min-w-0 md:grid-cols-[1fr_1.35fr] md:items-center">
           <div>
-            <p class="display text-6xl text-breast">03</p>
+            <p class="display text-6xl text-breast-2">03</p>
             <h3 class="display mt-3 text-4xl text-bark">Deliver it where people read.</h3>
             <p class="mt-4 text-lg leading-relaxed text-bark/80">
               A clean table in the body of the message, files attached, or a download link that expires, needs a sign-in if
@@ -209,7 +206,7 @@ const trust = [
                     </th>
                     {d.modes.map((m) => (
                       <td class="px-2 py-4 text-center sm:px-3">
-                        {m ? <span class="inline-block size-3 rounded-full bg-breast" aria-label="Supported" /> : <span class="inline-block h-px w-3 bg-rule align-middle" aria-label="Not supported" />}
+                        {m ? <><span class="inline-block size-3 rounded-full bg-breast" aria-hidden="true" /><span class="sr-only">Supported</span></> : <><span class="inline-block h-px w-3 bg-rule align-middle" aria-hidden="true" /><span class="sr-only">Not supported</span></>}
                       </td>
                     ))}
                   </tr>
@@ -240,7 +237,7 @@ const trust = [
             <li class="grid grid-cols-[2.5rem_1fr] gap-4 py-5">
               <span class="label pt-1">{String(i + 1).padStart(2, '0')}</span>
               <div>
-                <code class="font-mono text-[0.95rem] text-breast-2">{code}</code>
+                <code class="font-mono text-[0.95rem] text-breast-ink">{code}</code>
                 <p class="display mt-1 text-2xl text-bark">{text}</p>
               </div>
             </li>
@@ -276,7 +273,7 @@ const trust = [
             Reports you can <em>review in a pull request.</em>
           </h2>
           <p class="mt-5 text-lg leading-relaxed text-bark/80">
-            Export any report as YAML, keep it in Git, and apply it with <code class="font-mono text-base text-breast-2">rowbird apply</code>, which prints the plan before it changes anything. Or point Rowbird at a directory and it applies it at every start. Secrets never go in the file.
+            Export any report as YAML, keep it in Git, and apply it with <code class="font-mono text-base text-breast-ink">rowbird apply</code>, which prints the plan before it changes anything. Or point Rowbird at a directory and it applies it at every start. Secrets never go in the file.
           </p>
         </div>
         <figure class="plate">

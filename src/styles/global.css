@@ -16,7 +16,8 @@
   --color-ink: #2a1a0f;
   --color-mute: #7a6656;
   --color-breast: #e8762b;
-  --color-breast-2: #c95f1a;
+  --color-breast-2: #c95f1a; /* large orange text on light backgrounds (3.8:1) */
+  --color-breast-ink: #a84a15; /* small orange text on light backgrounds (5.4:1) */
   --color-cream: #f5e6c8;
   --font-display: 'Fraunces Variable', Georgia, serif;
   --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
@@ -52,8 +53,13 @@
   }
   .display em {
     font-style: italic;
-    color: var(--color-breast);
+    color: var(--color-breast-2);
     font-variation-settings: 'SOFT' 100, 'WONK' 1;
+  }
+  /* On dark sections the brand orange itself has enough contrast. */
+  .bg-bark .display em,
+  .bg-ink .display em {
+    color: var(--color-breast);
   }
   /* Small mono labels, like the captions of a printed field guide. */
   .label {
@@ -76,7 +82,7 @@
   .tok-k { color: #b4491a; font-weight: 500; }
   .tok-s { color: #2f6b3e; }
   .tok-p { color: var(--color-breast); }
-  .tok-c { color: #a08c7a; font-style: italic; }
+  .tok-c { color: var(--color-mute); font-style: italic; }
   .tok-n { color: #7a3fa0; }
 }
 
