@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rowbird.dev/sitemap-index.xml

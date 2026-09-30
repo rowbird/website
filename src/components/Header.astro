@@ -1,0 +1,24 @@
+---
+import logo from '../assets/logo-mark.svg?raw'
+const links = [
+  ['How it works', '#how'],
+  ['Destinations', '#destinations'],
+  ['Alerts', '#alerts'],
+  ['Docs', 'https://docs.rowbird.dev'],
+]
+---
+<header class="sticky top-0 z-40 border-b border-rule/70 bg-paper/90 backdrop-blur">
+  <nav class="mx-auto flex h-16 max-w-6xl items-center gap-8 px-5 sm:px-8" aria-label="Main">
+    <a href="/" class="flex items-center gap-2.5" aria-label="Rowbird home">
+      <span class="block w-9" set:html={logo} />
+      <span class="display text-2xl font-semibold text-bark">Rowbird</span>
+    </a>
+    <ul class="hidden items-center gap-7 text-[0.95rem] text-bark/80 md:flex">
+      {links.map(([name, href]) => <li><a class="transition hover:text-breast" href={href}>{name}</a></li>)}
+    </ul>
+    <div class="ml-auto flex items-center gap-3">
+      <a href="https://github.com/rowbird/rowbird" class="hidden font-mono text-sm text-bark/80 transition hover:text-breast sm:block">GitHub</a>
+      <a href="#install" class="rounded-lg bg-bark px-4 py-2 text-sm font-medium text-cream transition hover:bg-breast">Install</a>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,63 @@
+---
+import '../styles/global.css'
+
+interface Props {
+  title: string
+  description: string
+}
+const { title, description } = Astro.props
+const canonical = new URL(Astro.url.pathname, Astro.site).href
+const og = new URL('/og.jpg', Astro.site).href
+
+// Structured data: search engines show it as a software product with its price (free) and source.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Rowbird',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Linux, macOS, Windows, Docker',
+  description,
+  url: 'https://rowbird.dev',
+  downloadUrl: 'https://github.com/rowbird/rowbird/releases',
+  softwareHelp: 'https://docs.rowbird.dev',
+  license: 'https://www.apache.org/licenses/LICENSE-2.0',
+  image: og,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  codeRepository: 'https://github.com/rowbird/rowbird',
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#E8762B" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Rowbird" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={og} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Rowbird: your SQL results, delivered." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={og} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class="min-h-screen overflow-x-hidden">
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded focus:bg-bark focus:px-3 focus:py-2 focus:text-paper">Skip to content</a>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,86 @@
+@import '@fontsource-variable/fraunces/full.css';
+@import '@fontsource-variable/fraunces/full-italic.css';
+@import '@fontsource/ibm-plex-sans/400.css';
+@import '@fontsource/ibm-plex-sans/500.css';
+@import '@fontsource/ibm-plex-sans/600.css';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+@import 'tailwindcss';
+
+@theme {
+  --color-paper: #faf7f2;
+  --color-paper-2: #f3ede4;
+  --color-rule: #e4d9cb;
+  --color-bark: #3b2415;
+  --color-bark-2: #6b4226;
+  --color-ink: #2a1a0f;
+  --color-mute: #7a6656;
+  --color-breast: #e8762b;
+  --color-breast-2: #c95f1a;
+  --color-cream: #f5e6c8;
+  --font-display: 'Fraunces Variable', Georgia, serif;
+  --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+  ::selection {
+    background: var(--color-breast);
+    color: var(--color-paper);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-breast);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* Display type: Fraunces with its soft, wonky optical axes. */
+  .display {
+    font-family: var(--font-display);
+    font-variation-settings: 'SOFT' 100, 'WONK' 1;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+  }
+  .display em {
+    font-style: italic;
+    color: var(--color-breast);
+    font-variation-settings: 'SOFT' 100, 'WONK' 1;
+  }
+  /* Small mono labels, like the captions of a printed field guide. */
+  .label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-mute);
+  }
+  .plate {
+    background: #fff;
+    border: 1px solid var(--color-rule);
+    border-radius: 14px;
+    box-shadow: 0 1px 0 var(--color-rule), 0 24px 48px -28px rgb(59 36 21 / 0.35);
+    overflow: hidden;
+  }
+  .rule {
+    border-top: 1px solid var(--color-rule);
+  }
+  .tok-k { color: #b4491a; font-weight: 500; }
+  .tok-s { color: #2f6b3e; }
+  .tok-p { color: var(--color-breast); }
+  .tok-c { color: #a08c7a; font-style: italic; }
+  .tok-n { color: #7a3fa0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
