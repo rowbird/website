@@ -1,6 +1,5 @@
 ---
-// The launch video: silent autoplay (browsers only allow it muted), with a button to turn the
-// soundtrack on. The poster is the video's own first frame.
+// The launch video, silent: it plays like a moving screenshot. The poster is its own first frame.
 ---
 <figure class="relative">
   <div class="plate relative">
@@ -8,37 +7,25 @@
       <source src="/video/rowbird-720.mp4" type="video/mp4" media="(max-width: 900px)" />
       <source src="/video/rowbird.mp4" type="video/mp4" />
     </video>
-    <button type="button" class="absolute right-4 bottom-4 flex items-center gap-2 rounded-full bg-bark/85 px-4 py-2 font-mono text-xs tracking-wider text-cream uppercase backdrop-blur transition hover:bg-bark" data-sound aria-pressed="false">
-      <span class="relative flex size-2"><span class="absolute inline-flex size-full animate-ping rounded-full bg-breast opacity-70"></span><span class="relative inline-flex size-2 rounded-full bg-breast"></span></span>
-      <span data-sound-label>Sound on</span>
-    </button>
   </div>
   <figcaption class="mt-4 flex flex-wrap items-baseline gap-x-4 gap-y-1">
     <span class="label text-breast-ink">Fig. 1</span>
-    <span class="text-sm text-mute">From a question in plain English to the 07:00 email, recorded on a real Rowbird. 21 seconds.</span>
+    <span class="text-sm text-mute">From a question in plain English to the 07:00 email.</span>
   </figcaption>
 </figure>
 <script>
   // Start the video once the page has loaded and the video is on screen, so it never competes
-  // with the first paint. People who prefer reduced motion start it themselves.
+  // with the first paint. People who prefer reduced motion get the controls and start it themselves.
   const video = document.querySelector<HTMLVideoElement>('[data-video]')!
-  const btn = document.querySelector<HTMLButtonElement>('[data-sound]')!
-  const label = btn.querySelector<HTMLElement>('[data-sound-label]')!
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   const start = () => {
     new IntersectionObserver((entries, obs) => {
       if (entries.some((e) => e.isIntersecting)) { void video.play().catch(() => {}); obs.disconnect() }
     }, { threshold: 0.25 }).observe(video)
   }
-  if (!reduced) {
+  if (reduced) video.controls = true
+  else {
     if (document.readyState === 'complete') start()
     else window.addEventListener('load', start, { once: true })
   }
-  btn.addEventListener('click', () => {
-    video.muted = !video.muted
-    if (!video.muted) { video.currentTime = 0; void video.play() }
-    btn.setAttribute('aria-pressed', String(!video.muted))
-    label.textContent = video.muted ? 'Sound on' : 'Sound off'
-    btn.querySelector('.animate-ping')?.remove()
-  })
 </script>

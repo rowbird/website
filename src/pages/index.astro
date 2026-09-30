@@ -7,6 +7,7 @@ import schedule from '../assets/schedule.png'
 import icon from '../assets/icon.svg?raw'
 import CopyCommand from '../components/CopyCommand.astro'
 import Header from '../components/Header.astro'
+import HeroFlow from '../components/HeroFlow.astro'
 import VideoPlate from '../components/VideoPlate.astro'
 import Base from '../layouts/Base.astro'
 
@@ -46,31 +47,31 @@ const trust = [
   <Header />
   <main id="main">
     <!-- Hero -->
-    <section class="relative mx-auto max-w-6xl px-5 pt-16 sm:px-8 sm:pt-24">
-      <h1 class="display text-[clamp(3.4rem,10.5vw,8.6rem)] font-medium text-bark">
-        Your SQL results, <em>delivered.</em>
-      </h1>
-      <div class="mt-10 max-w-3xl">
-        <p class="text-lg leading-relaxed text-bark/85 sm:text-xl">
+    <section class="mx-auto grid max-w-[1320px] gap-14 px-5 pt-12 pb-8 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-16 lg:pt-20 lg:pb-16">
+      <div class="min-w-0">
+        <h1 class="display text-[11vw] font-medium text-bark sm:text-[8.4vw] lg:text-[clamp(3rem,4.9vw,5.4rem)]"><span class="whitespace-nowrap">Your SQL results,</span><br /><em>delivered.</em></h1>
+        <p class="mt-7 max-w-xl text-lg leading-relaxed text-bark/85 sm:text-xl">
           Rowbird runs your queries on a schedule and delivers the results where your team already reads: a table in the
-          email, or CSV, Excel and PDF files in Slack, Telegram, Discord, a webhook or a bucket. Add a condition and the same
-          report becomes an alert.
+          email, or CSV, Excel and PDF in Slack, Telegram, Discord, a webhook or a bucket. Add a condition and it becomes an
+          alert.
+        </p>
+        <div class="mt-8"><CopyCommand command="docker run -p 8080:8080 ghcr.io/rowbird/rowbird" /></div>
+        <p class="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-sm text-mute">
+          <a class="underline decoration-rule underline-offset-4 transition hover:text-breast-ink hover:decoration-breast-ink" href="#tour">Watch the 21-second tour</a>
+          <a class="underline decoration-rule underline-offset-4 transition hover:text-breast-ink hover:decoration-breast-ink" href="https://docs.rowbird.dev/guide/demo">Try the demo</a>
+          <a class="underline decoration-rule underline-offset-4 transition hover:text-breast-ink hover:decoration-breast-ink" href="https://github.com/rowbird/rowbird">Star on GitHub</a>
         </p>
       </div>
-      <div class="mt-12 sm:mt-16">
-        <VideoPlate />
+      <HeroFlow />
+    </section>
+
+    <!-- Tour -->
+    <section id="tour" class="mx-auto max-w-6xl scroll-mt-20 px-5 pt-10 sm:px-8 sm:pt-16" aria-labelledby="tour-title">
+      <div class="mb-8 flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
+        <h2 id="tour-title" class="display text-[clamp(2rem,3.6vw,3rem)] font-normal text-bark">Watch it <em>work.</em></h2>
+        <p class="label">21 seconds, recorded on a real Rowbird</p>
       </div>
-      <div class="mt-10 border-t border-rule pt-8">
-        <div class="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
-          <p class="display text-3xl text-bark">Try it in one minute.</p>
-          <p class="flex flex-wrap gap-x-5 gap-y-1 text-sm text-mute">
-            <a class="underline decoration-rule underline-offset-4 transition hover:text-breast-ink hover:decoration-breast-ink" href="https://docs.rowbird.dev/guide/quick-start">Quick start</a>
-            <a class="underline decoration-rule underline-offset-4 transition hover:text-breast-ink hover:decoration-breast-ink" href="https://docs.rowbird.dev/guide/demo">Try the demo</a>
-            <a class="underline decoration-rule underline-offset-4 transition hover:text-breast-ink hover:decoration-breast-ink" href="https://github.com/rowbird/rowbird">Star on GitHub</a>
-          </p>
-        </div>
-        <div class="mt-5"><CopyCommand command={run} /></div>
-      </div>
+      <VideoPlate />
     </section>
 
     <!-- The problem -->

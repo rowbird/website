@@ -1,0 +1,68 @@
+---
+// The hero's story at a glance: the SQL, the schedule, and the email it becomes. The email is
+// the real one Rowbird rendered for the demo data; the table rows below are the same values.
+const rows = [
+  ['East', 6, '548.35'],
+  ['West', 5, '500.24'],
+  ['South', 8, '495.87'],
+  ['Central', 5, '382.59'],
+  ['North', 1, '85.10'],
+]
+---
+<div class="flow relative mx-auto w-full max-w-[600px] select-none" aria-label="A SQL query, scheduled for weekdays at 07:00, arrives as an email with the results and CSV, Excel and PDF files." role="img">
+  <div class="plate step s1 relative z-10 w-[96%] rotate-[-1.6deg] sm:w-[86%]">
+    <div class="flex items-center gap-2 border-b border-rule bg-paper px-4 py-2.5">
+      <span class="size-2.5 rounded-full bg-rule"></span><span class="size-2.5 rounded-full bg-rule"></span><span class="size-2.5 rounded-full bg-rule"></span>
+      <span class="ml-3 font-mono text-xs text-mute">sales-by-region.sql</span>
+    </div>
+    <pre class="overflow-hidden bg-white px-4 py-4 font-mono text-[0.68rem] leading-relaxed text-bark sm:px-5 sm:text-[0.82rem]"><span class="tok-k">SELECT</span> region, <span class="tok-k">COUNT</span>(*) <span class="tok-k">AS</span> orders,
+       <span class="tok-k">ROUND</span>(<span class="tok-k">SUM</span>(total), 2) <span class="tok-k">AS</span> revenue
+<span class="tok-k">FROM</span> orders
+<span class="tok-k">WHERE</span> created_at &gt;= <span class="tok-p">{'{{yesterday}}'}</span>
+<span class="tok-k">GROUP BY</span> region <span class="tok-k">ORDER BY</span> revenue <span class="tok-k">DESC</span></pre>
+  </div>
+
+  <div class="step s2 relative z-20 -mt-3.5 mb-3 ml-[12%] flex w-fit items-center gap-3 rounded-full bg-bark px-4 py-2 font-mono text-xs text-cream shadow-[0_12px_30px_-10px_rgb(59_36_21/0.6)]">
+    <span class="relative flex size-2"><span class="pulse absolute inline-flex size-full rounded-full bg-breast"></span><span class="relative inline-flex size-2 rounded-full bg-breast"></span></span>
+    0 7 * * 1-5 <span class="text-cream/50">·</span> weekdays at 07:00
+  </div>
+
+  <div class="plate step s3 relative z-10 ml-auto w-[96%] rotate-[1.2deg] sm:w-[90%]">
+    <div class="flex items-center justify-between border-b border-rule bg-paper px-5 py-3 text-sm">
+      <span><span class="font-semibold text-bark">Daily sales: 5 regions</span><span class="ml-2 text-mute">from Rowbird</span></span>
+      <span class="font-mono text-xs text-mute">07:00</span>
+    </div>
+    <div class="bg-white px-6 py-5">
+      <p class="font-semibold text-bark">Daily sales</p>
+      <p class="mt-1 text-sm text-mute">Good morning! Here are yesterday's sales.</p>
+      <table class="mt-4 w-full text-sm">
+        <thead><tr class="bg-paper-2 text-left text-bark"><th class="px-3 py-1.5 font-semibold">region</th><th class="px-3 py-1.5 text-right font-semibold">orders</th><th class="px-3 py-1.5 text-right font-semibold">revenue</th></tr></thead>
+        <tbody>
+          {rows.map(([r, o, v], i) => (
+            <tr class="row border-b border-rule/60 text-bark/90" style={`--i:${i}`}><td class="px-3 py-1.5">{r}</td><td class="px-3 py-1.5 text-right tabular-nums">{o}</td><td class="px-3 py-1.5 text-right font-mono tabular-nums">{v}</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <div class="flex gap-2 border-t border-rule bg-paper px-5 py-2.5 font-mono text-[0.72rem] text-bark">
+      <span class="rounded bg-white px-2 py-0.5 ring-1 ring-rule">daily-sales.csv</span><span class="rounded bg-white px-2 py-0.5 ring-1 ring-rule">.xlsx</span><span class="rounded bg-white px-2 py-0.5 ring-1 ring-rule">.pdf</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .step { opacity: 0; animation: rise 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+  .s1 { animation-delay: 0.1s; --r: -1.6deg; }
+  .s2 { animation-name: pop; animation-delay: 0.6s; }
+  .s3 { animation-delay: 1s; --r: 1.2deg; }
+  .row { opacity: 0; animation: row 0.45s ease-out forwards; animation-delay: calc(1.5s + var(--i) * 0.12s); }
+  .pulse { animation: pulse 2s ease-out 2.4s infinite; }
+  @keyframes rise { from { opacity: 0; transform: translateY(24px) rotate(var(--r, 0deg)); } to { opacity: 1; transform: translateY(0) rotate(var(--r, 0deg)); } }
+  @keyframes pop { 0% { opacity: 0; transform: scale(0.7); } 70% { opacity: 1; transform: scale(1.06); } 100% { opacity: 1; transform: scale(1); } }
+  @keyframes row { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: none; } }
+  @keyframes pulse { 0% { transform: scale(1); opacity: 0.7; } 80%, 100% { transform: scale(2.6); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .step, .row { opacity: 1; animation: none; }
+    .pulse { animation: none; }
+  }
+</style>

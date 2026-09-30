@@ -81,7 +81,7 @@
   }
   .tok-k { color: #b4491a; font-weight: 500; }
   .tok-s { color: #2f6b3e; }
-  .tok-p { color: var(--color-breast); }
+  .tok-p { color: var(--color-breast-ink); }
   .tok-c { color: var(--color-mute); font-style: italic; }
   .tok-n { color: #7a3fa0; }
 }
