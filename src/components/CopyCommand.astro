@@ -1,8 +1,8 @@
 ---
-interface Props { command: string; dark?: boolean; wrap?: boolean }
-const { command, dark = false, wrap = false } = Astro.props
+interface Props { command: string; dark?: boolean; wrap?: boolean; small?: boolean }
+const { command, dark = false, wrap = false, small = false } = Astro.props
 ---
-<div class:list={['copy-cmd group flex items-stretch overflow-hidden rounded-xl border font-mono text-[0.95rem]', dark ? 'border-bark-2 bg-ink text-cream' : 'border-bark bg-bark text-cream']}>
+<div class:list={['copy-cmd group flex items-stretch overflow-hidden rounded-xl border font-mono', small ? 'text-[0.82rem]' : 'text-[0.95rem]', dark ? 'border-bark-2 bg-ink text-cream' : 'border-bark bg-bark text-cream']}>
   <code class:list={['flex min-w-0 flex-1 gap-3 px-4 py-3', wrap ? 'items-start break-all whitespace-normal' : 'items-center overflow-x-auto whitespace-nowrap']}>
     <span class="text-breast select-none" aria-hidden="true">$</span><span data-cmd>{command}</span>
   </code>

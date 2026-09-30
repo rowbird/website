@@ -47,15 +47,15 @@ const trust = [
   <Header />
   <main id="main">
     <!-- Hero -->
-    <section class="mx-auto grid max-w-[1320px] gap-14 px-5 pt-12 pb-8 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-16 lg:pt-20 lg:pb-16">
+    <section class="mx-auto grid max-w-6xl gap-14 px-5 pt-12 pb-8 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-12 lg:pt-20 lg:pb-16">
       <div class="min-w-0">
-        <h1 class="display text-[11vw] font-medium text-bark sm:text-[8.4vw] lg:text-[clamp(3rem,4.9vw,5.4rem)]"><span class="whitespace-nowrap">Your SQL results,</span><br /><em>delivered.</em></h1>
+        <h1 class="display text-[11vw] font-medium text-bark sm:text-[8.4vw] lg:text-[clamp(2.6rem,4.3vw,4.4rem)]"><span class="whitespace-nowrap">Your SQL results,</span><br /><em>delivered.</em></h1>
         <p class="mt-7 max-w-xl text-lg leading-relaxed text-bark/85 sm:text-xl">
           Rowbird runs your queries on a schedule and delivers the results where your team already reads: a table in the
           email, or CSV, Excel and PDF in Slack, Telegram, Discord, a webhook or a bucket. Add a condition and it becomes an
           alert.
         </p>
-        <div class="mt-8"><CopyCommand command="docker run -p 8080:8080 ghcr.io/rowbird/rowbird" /></div>
+        <div class="mt-8"><CopyCommand command="docker run -p 8080:8080 ghcr.io/rowbird/rowbird" small /></div>
         <p class="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-sm text-mute">
           <a class="underline decoration-rule underline-offset-4 transition hover:text-breast-ink hover:decoration-breast-ink" href="#tour">Watch the 21-second tour</a>
           <a class="underline decoration-rule underline-offset-4 transition hover:text-breast-ink hover:decoration-breast-ink" href="https://docs.rowbird.dev/guide/demo">Try the demo</a>
